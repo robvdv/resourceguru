@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  <body>
+
+    <div class="row" id="intro">
+      <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">Hi there! I'm Rob.</span>
+            <p>Here's my submission for the Resource Guru technical test.</p>
+            <p>Since this is a web dev position I thought it appropriate to build a web app to solve the sample problems.</p>
+          </div>
+          <div class="card-action">
+            <a href="#" id="view-array">Array Flattening</a>
+            <a href="#" id="view-morse">Morse Encoding</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- I don't normally use inline styles :) -->
+    <div id="main-array" style="display: none;">
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card light-blue darken-4">
+            <div class="card-content white-text">
+
+                <span class="card-title">Pick your sample array</span>
+
+                <p>
+                  <input name="data" type="radio" id="data-simple" checked/>
+                  <label for="data-simple">[1,2,3]</label>
+                </p>
+                <p>
+                  <input name="data" type="radio" id="data-nested-1" />
+                  <label for="data-nested-1">[1,['a', 'b'],3]</label>
+                </p>
+                <p>
+                  <input name="data" type="radio" id="data-nested-2"  />
+                  <label for="data-nested-2">[1,['a', ['x', 'y']],3]</label>
+                </p>
+                <p>
+                  <input name="data" type="radio" id="data-nulls"  />
+                  <label for="data-nulls">[1,['a', null, ],3]</label>
+                </p>
+                <p>
+                  <input name="data" type="radio" id="data-noparse"  />
+                  <label for="data-noparse">1,foo, bar],3]</label>
+                </p>
+                <p>
+                  <input name="data" type="radio" id="data-custom"  />
+                  <label for="data-custom">Custom</label>
+                  <textarea id="custom-array" class="materialize-textarea">
+                    [1, 2, 3, 'a', ['foo'], ['bar', ['baz'], 5]]
+                  </textarea>
+                </p>
+
+                <div class="card-action">
+                  <button class="btn waves-effect waves-light" type="submit" name="action" id="run-test">Submit
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card purple darken-4">
+            <div class="card-content white-text">
+
+              <span class="card-title">Output</span>
+
+              <strong id="test-message"></strong>
+
+              <table class="highlight">
+                <thead>
+                <tr>
+                  <th>Algorithm</th>
+                  <th>Output</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>Rob</td>
+                  <td id="algo-output"></td>
+                </tr>
+                <tr>
+                  <td>Underscore</td>
+                  <td id="underscore-output"></td>
+                </tr>
+                <tr>
+                  <td>Lodash</td>
+                  <td id="lodash-output"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="main-morse" style="display: none;">
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card light-blue darken-4">
+            <div class="card-content white-text">
+              <span class="card-title">Top Secret Species Saving Message</span>
+              <form action="#">
+                <p>
+                  <label for="input-message">Enter message</label>
+                  <textarea id="input-message" class="materialize-textarea">HELLO
+I AM IN TROUBLE</textarea>
+                </p>
+
+                <div class="file-field input-field">
+                  <div class="btn">
+                    <span>File</span>
+                    <input id="file-upload" type="file">
+                  </div>
+                  <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Click 'File' to load text file from disk">
+                  </div>
+                </div>
+
+              </form>
+
+              <div class="card-action">
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="run-test-morse">Run Tests
+                  <i class="material-icons right">loop</i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card purple darken-4">
+            <div class="card-content white-text">
+
+              <span class="card-title">Output</span>
+
+              <div class="row">
+                <div class="col s12 m6">
+                  <div class="card white darken-4">
+                    <div class="card-content black-text">
+                      <label for="encoded-message-morse">Morse Encoded</label>
+                      <pre id="encoded-message-morse"></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12 m6">
+                  <div class="card white darken-4">
+                    <div class="card-content black-text">
+                      <label for="encoded-message-obfuscated">Obfuscated Morse Encoded</label>
+                      <pre id="encoded-message-obfuscated"></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-action" id="download-output-wrapper">
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/lodash.js"></script>
+    <script>
+      // alias lodash to __
+      window.__ = window._;
+    </script>
+    <script type="text/javascript" src="js/underscore.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/morse.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+  </body>
+</html>
